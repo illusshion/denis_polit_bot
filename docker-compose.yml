@@ -1,0 +1,19 @@
+version:  "3.7"
+
+services:
+  redis:
+    image: redis:latest
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf 
+      - ./redis_data/data:/data
+  bot:
+    build: .
+    command: python3 -m bot_template.main
+    restart: always
+    depends_on:
+      - redis
+
+volumes:
+  redis:

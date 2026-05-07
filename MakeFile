@@ -1,0 +1,5 @@
+generate:
+	alembic revision -message="${NAME}" --autogenerate
+
+migrate:
+	alembic upgrade head
